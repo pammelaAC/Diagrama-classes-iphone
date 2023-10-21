@@ -1,0 +1,56 @@
+@startuml
+title Orientação a Objetos e UML: Diagramação de Classes do iPhone
+
+skinparam classAttributeIconSize 0
+interface "Reprodutor Musical" as ReprodutorMusical {
+  -Musica[] musicas
+  +tocar(): void
+  +pausar(): void
+  +selecionarMusica(): void
+}
+
+class Musica {
+  nome: String
+  caminho: String
+}
+
+class Contato {
+  nome: String
+  numero: String
+}
+
+interface "Aparelho Telefônico" as AparelhoTelefonico {
+  -Contato[] contatos
+  -redeMovelDisponivel(): Boolean
+  +ligar(): void
+  +atender(): void
+  +iniciarCorreioVoz(): void
+}
+
+interface "Navegador de Internet" as NavegadorInternet {
+  -ConexaoComInternet(): Boolean
+  +exibirPagina(): void
+  +adicionarNovaAba(): void
+  +atualizarPagina(): void
+}
+
+entity "IPhone" as IPhone {}
+
+entity "Chrome" as Chrome {}
+
+entity "LG" as LG {}
+
+entity "IPOD" as IPOD {}
+
+IPhone --> AparelhoTelefonico
+IPhone --> NavegadorInternet
+IPhone --> ReprodutorMusical
+ReprodutorMusical --o Musica
+AparelhoTelefonico <-- LG
+AparelhoTelefonico --o Contato
+
+ReprodutorMusical <-- IPOD
+
+NavegadorInternet <-- Chrome
+
+@enduml
